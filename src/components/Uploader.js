@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-function Uploader({ setImageSrc }) {
+const Uploader = ({ setImageSrc }) => {
     const changeImage = (e) => {
         const imgSrc = e.target.value;
         setImageSrc(imgSrc);
