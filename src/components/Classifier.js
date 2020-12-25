@@ -7,9 +7,18 @@ function Classifier({ imageSrc }) {
     const [results, setResults] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
-    const classifyImg = () => {
+    const classifyImg = async () => {
         setLoading(true);
-        const classifier = ml5.imageClassifier("MobileNet", () =>
+        // const classifier = ml5.imageClassifier("MobileNet", () =>
+        //     console.log("Module loaded")
+        // );
+
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+
+        const classifier = ml5.imageClassifier('./model/model.json', () =>
             console.log("Module loaded")
         );
 
@@ -37,7 +46,7 @@ function Classifier({ imageSrc }) {
                     width="50%"
                 />}
             </div>
-            <div className="container d-flex justify-content-center p-4">
+            <div className="container d-flex justify-content-center p-">
             {isLoading ? (
                 <ClipLoader />
             ) : (
