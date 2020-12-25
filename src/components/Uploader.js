@@ -1,13 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-const Container = styled.div``;
-
-const Upload = styled.input`
-    border: none;
-    width: 16rem;
-    height: 2rem;
-`;
+import { Form } from "react-bootstrap";
 
 function Uploader({ setImageSrc }) {
     const changeImage = (e) => {
@@ -15,13 +7,16 @@ function Uploader({ setImageSrc }) {
         setImageSrc(imgSrc);
     };
     return (
-        <Container>
-            <Upload
-                type="text"
-                onChange={changeImage}
-                placeholder="Insert Image Url"
-            />
-        </Container>
+        <div className="container">
+            <Form>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Image url 입력하세요. </Form.Label>
+                    <Form.Control type="text" placeholder="예) 우산, 형광등, 프링글스통" onChange={changeImage}/>
+                    <Form.Text className="text-muted">
+                    * 현재 jpg만 지원합니다.</Form.Text>
+                </Form.Group>
+            </Form>
+        </div>
     );
 }
 

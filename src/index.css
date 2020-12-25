@@ -1,0 +1,13 @@
+@import 'bootstrap/dist/css/bootstrap.css';
+
+header {
+    padding: 20px;
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+}
+
+body {
+  background-color: white;
+  color: black;
+}

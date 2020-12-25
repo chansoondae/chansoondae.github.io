@@ -1,28 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import ml5 from "ml5";
 import ClipLoader from "react-spinners/ClipLoader";
+import { ListGroup } from "react-bootstrap";
 
-const Container = styled.div`
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
-
-const Image = styled.img`
-    height: 20rem;
-    width: 30rem;
-`;
-
-const List = styled.ul`
-    margin-top: 20px;
-`;
-
-const Item = styled.li`
-    list-style-type: none;
-`;
 function Classifier({ imageSrc }) {
     const [results, setResults] = useState([]);
     const [isLoading, setLoading] = useState(false);
@@ -45,30 +25,37 @@ function Classifier({ imageSrc }) {
             });
     };
     return (
-        <Container>
-            <Image
-                src={imageSrc}
-                id="image"
-                onLoad={classifyImg}
-                crossOrigin="anonymous"
-            />
+        <>
+            <div className="container d-flex justify-content-center">
+                {imageSrc && <img 
+                    id="image"
+                    src={imageSrc} 
+                    alt={`input for tensorflow`}  
+                    className="img-responsive"
+                    crossOrigin='anonymous'
+                    onLoad={classifyImg}
+                    width="50%"
+                />}
+            </div>
+            <div className="container d-flex justify-content-center p-4">
             {isLoading ? (
                 <ClipLoader />
             ) : (
-                <List>
+                <ListGroup>
                     {results.map((result, index) => {
                         const { label, confidence } = result;
                         return (
-                            <Item key={index}>{`${
+                            <ListGroup.Item key={index}>{`${
                                 index + 1
                             }. Predictation : ${label} , ${Math.floor(
                                 confidence * 100
-                            )}%`}</Item>
+                            )}%`}</ListGroup.Item>
                         );
                     })}
-                </List>
+                </ListGroup>
             )}
-        </Container>
+            </div>
+        </>
     );
 }
 
