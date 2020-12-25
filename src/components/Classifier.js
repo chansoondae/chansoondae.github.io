@@ -9,16 +9,9 @@ function Classifier({ imageSrc }) {
 
     const classifyImg = async () => {
         setLoading(true);
-        // const classifier = ml5.imageClassifier("MobileNet", () =>
-        //     console.log("Module loaded")
-        // );
+        const imageModelURL = 'https://teachablemachine.withgoogle.com/models/NwYgSenim/';
 
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // or files from your local hard drive
-        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-
-        const classifier = ml5.imageClassifier('./model/model.json', () =>
+        const classifier = ml5.imageClassifier(imageModelURL + 'model.json', () =>
             console.log("Module loaded")
         );
 
